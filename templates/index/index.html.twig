@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Тест{% endblock %}
+
+{% block body %}
+
+<div class="page-wrapper">
+    <h1>Тест! ✅</h1>
+
+    <form action="{{ path('app_send_result') }}" id="question_form" method="post">
+        <input type="hidden" name="token" value="{{ csrf_token('testing_result') }}" />
+        <label for="username">Имя:</label>
+        <input type="text" name="username" required value="">
+        {% for question in questions %}
+            <p>{{ loop.index }}) {{ question.title }} ?</p>
+            {% for answer in question.answers %}
+                <div>
+                    <input type="checkbox" id="answer_{{ answer.id }}" name="answers[{{ question.id }}][{{ answer.id }}]" />
+                    <label for="answer_{{ answer.id }}">{{ answer.answer }}</label>
+                </div>
+            {% endfor %}
+        {% endfor %}
+        <button class="buttonConfirm" type="submit">Отправить</button>
+    </form>
+
+
+
+</div>
+{% endblock %}

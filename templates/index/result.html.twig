@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Результат{% endblock %}
+
+{% block body %}
+
+    <div class="page-wrapper">
+        <a href="{{ path('app_index') }}">Пройти повторно</a>
+        <h1>Результат</h1>
+
+        <div class="textcols">
+            <div class="textcols-item">
+                <h3>Правильные ответы</h3>
+                {% for question in result.valid %}
+                    <p>{{ loop.index }}) {{ question.title }} ?</p>
+                    {% for answer in question.answers %}
+                        <div>
+                            <input type="checkbox" disabled {{ answer.selected ? 'checked' : '' }}
+                                   name="answers[{{ question.id }}][{{ answer.id }}]"/>
+                            <label for="answer_{{ answer.id }}">{{ answer.answer }} </label>
+
+                            {% if answer.valid %}
+                                <span style="color: green">(Правильный вариант)</span>
+                            {% else %}
+                                <span style="color: red">(Неправильный вариант)</span>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+
+                {% endfor %}
+            </div>
+            <div class="textcols-item">
+                <h3>Неправильные ответы</h3>
+                {% for question in result.noValid %}
+                    <p>{{ loop.index }}) {{ question.title }} ?</p>
+                    {% for answer in question.answers %}
+                        <div>
+                            <input type="checkbox" disabled {{ answer.selected ? 'checked' : '' }}
+                                   name="answers[{{ question.id }}][{{ answer.id }}]"/>
+                            <label for="answer_{{ answer.id }}">{{ answer.answer }} </label>
+
+                            {% if answer.valid %}
+                                <span style="color: green">(Правильный вариант)</span>
+                            {% else %}
+                                <span style="color: red">(Неправильный вариант)</span>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+
+                {% endfor %}
+            </div>
+        </div>
+
+
+
+
+
+
+    </div>
+{% endblock %}

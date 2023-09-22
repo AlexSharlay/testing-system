@@ -15,7 +15,7 @@
                     <p>{{ loop.index }}) {{ question.title }} ?</p>
                     {% for answer in question.answers %}
                         <div>
-                            <input type="checkbox" disabled {{ answer.selected ? 'checked' : '' }}
+                            <input type="checkbox" disabled {{answer.selected is defined and answer.selected ? 'checked' : '' }}
                                    name="answers[{{ question.id }}][{{ answer.id }}]"/>
                             <label for="answer_{{ answer.id }}">{{ answer.answer }} </label>
 
@@ -35,7 +35,7 @@
                     <p>{{ loop.index }}) {{ question.title }} ?</p>
                     {% for answer in question.answers %}
                         <div>
-                            <input type="checkbox" disabled {{ answer.selected ? 'checked' : '' }}
+                            <input type="checkbox" disabled {{ answer.selected is defined and answer.selected ? 'checked' : '' }}
                                    name="answers[{{ question.id }}][{{ answer.id }}]"/>
                             <label for="answer_{{ answer.id }}">{{ answer.answer }} </label>
 

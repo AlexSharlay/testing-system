@@ -71,9 +71,9 @@ class TestingService
             //Флаг указывает, что ответ на вопрос верный
             $answerToQuestion['correct_answer'] = true;
 
-            //Если в ответах нет вопроса из бд или нет ответов на вопрос, то вопрос не засчитывается
+            //Если нет ответа на вопрос, то вопрос не засчитывается
             // и выполняется переход на следующую итерацию
-            if (!isset($answers[$question['id']]) && !empty($answers[$question['id']]['answer'])){
+            if (empty($answers[$question['id']])){
                 $answerToQuestion['correct_answer'] = false;
                 $testResult[] = $answerToQuestion;
                 continue;

@@ -1,4 +1,4 @@
-init: docker-down docker-up composer-install migrations fixtures
+init: docker-down docker-up composer-install migrations-run fixtures
 
 docker-up:
 	docker-compose up -d
@@ -9,7 +9,7 @@ docker-down:
 composer-install:
 	docker-compose run --rm testing-system-php-cli composer install
 
-migrations:
+migrations-run:
 	docker-compose run --rm testing-system-php-cli php bin/console doctrine:migrations:migrate --no-interaction
 
 fixtures:
